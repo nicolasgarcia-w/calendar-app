@@ -5,12 +5,12 @@ import './globals.css'
 const geist = Geist({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Our Calendar',
+  title: 'Tu Calendario',
   description: 'A special gift, just for you.',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Our Calendar',
+    title: 'Tu Calendario',
   },
 }
 
