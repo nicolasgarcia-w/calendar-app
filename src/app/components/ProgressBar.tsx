@@ -6,7 +6,7 @@ export function ProgressBar({ opened, total }: Props) {
   return (
     <div className="w-full">
       <div className="flex justify-between text-xs text-rose-400 mb-1.5">
-        <span>{opened} of {total} days opened</span>
+        <span>{opened} de {total} días abiertos</span>
         <span>{pct}%</span>
       </div>
       <div className="h-2 w-full rounded-full bg-rose-100 overflow-hidden">

@@ -15,21 +15,19 @@ export default async function AdminPage() {
   return (
     <div className="min-h-screen bg-slate-50 px-4 py-8">
       <div className="max-w-sm mx-auto">
-        {/* Header */}
+
         <div className="text-center mb-6">
           <p className="text-3xl mb-2">🗓️</p>
-          <h1 className="text-2xl font-semibold text-slate-800">Admin Dashboard</h1>
-          <p className="text-sm text-slate-400 mt-1">Tap a day to edit it</p>
+          <h1 className="text-2xl font-semibold text-slate-800">Panel de Admin</h1>
+          <p className="text-sm text-slate-400 mt-1">Toca un día para editarlo</p>
         </div>
 
-        {/* Calendar */}
         <AdminCalendarGrid days={days} />
 
-        {/* Footer */}
         <div className="text-center mt-8">
           <form action={logoutAction}>
             <button type="submit" className="text-xs text-slate-400 hover:text-slate-600 underline">
-              Sign out
+              Cerrar sesión
             </button>
           </form>
         </div>

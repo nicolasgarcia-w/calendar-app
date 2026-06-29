@@ -18,8 +18,8 @@ export default function LoginPage() {
       const credential = await signInWithEmailAndPassword(auth, email, password)
       await createSessionAction(credential.user.uid)
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Login failed'
-      setError(msg.includes('invalid-credential') ? 'Invalid email or password.' : msg)
+      const msg = err instanceof Error ? err.message : 'Error al iniciar sesión'
+      setError(msg.includes('invalid-credential') ? 'Usuario o contraseña incorrectos.' : msg)
       setLoading(false)
     }
   }
@@ -27,13 +27,13 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-rose-50 px-4">
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-2xl font-semibold text-center text-rose-700 mb-2">Welcome</h1>
-        <p className="text-center text-sm text-gray-500 mb-8">Sign in to continue</p>
+        <h1 className="text-2xl font-semibold text-center text-rose-700 mb-2">Hola Amor</h1>
+        <p className="text-center text-sm text-gray-500 mb-8">Inicia sesión para continuar</p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">
-              Email
+              Usuario
             </label>
             <input
               id="email"
@@ -48,7 +48,7 @@ export default function LoginPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="password">
-              Password
+              Contraseña
             </label>
             <input
               id="password"
@@ -68,7 +68,7 @@ export default function LoginPage() {
             disabled={loading}
             className="mt-2 w-full rounded-lg bg-rose-600 py-2.5 text-sm font-semibold text-white hover:bg-rose-700 disabled:opacity-60 transition-colors"
           >
-            {loading ? 'Signing in…' : 'Sign in'}
+            {loading ? 'Iniciando sesión…' : 'Iniciar sesión'}
           </button>
         </form>
       </div>

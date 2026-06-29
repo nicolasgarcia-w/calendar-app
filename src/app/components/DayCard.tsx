@@ -1,7 +1,7 @@
 import type { PublicDay, AdminDay } from '@/lib/types'
 
 function formatUnlockDate(ms: number): string {
-  return new Date(ms).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  return new Date(ms).toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })
 }
 
 // ── Partner card ──────────────────────────────────────────────────────────────

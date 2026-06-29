@@ -41,7 +41,7 @@ export function MessageReveal({ dayNumber, title, body, alreadyOpened }: Props) 
         >
           <div className="text-9xl drop-shadow-sm select-none">💌</div>
           <p className="text-rose-500 text-sm font-medium tracking-wide animate-pulse-subtle">
-            Tap to open
+            Toca para abrir
           </p>
         </button>
       </div>
@@ -60,7 +60,7 @@ export function MessageReveal({ dayNumber, title, body, alreadyOpened }: Props) 
       <div className="relative max-w-md mx-auto">
         {/* Day label */}
         <p className="text-center text-rose-300 text-xs font-semibold mb-2 tracking-widest uppercase">
-          Day {dayNumber}
+          Día {dayNumber}
         </p>
 
         {/* Title */}
@@ -86,7 +86,7 @@ export function MessageReveal({ dayNumber, title, body, alreadyOpened }: Props) 
         {/* Back link */}
         <div className="text-center mt-8">
           <a href="/home" className="text-sm text-rose-400 hover:text-rose-600 underline underline-offset-2">
-            ← Back to calendar
+            ← Volver al calendario
           </a>
         </div>
       </div>
