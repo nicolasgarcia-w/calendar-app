@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /days/{dayId} {
+      // Admin has full access
+      allow read, write: if request.auth != null
+                         && request.auth.uid == '9BMdgwMTyCPmajy44Y05AaYzGn63';
+
+      // Partner can read a day only when it is published AND unlocked
+      allow read: if request.auth != null
+                  && request.auth.uid == 'szPOkXwzbjbMGnMTjKDaiRXxXEC2'
+                  && resource.data.status == 'published'
+                  && resource.data.unlockAt <= request.time;
+
+      // Partner can only update openedAt and completedAt on an unlocked published day
+      allow update: if request.auth != null
+                    && request.auth.uid == 'szPOkXwzbjbMGnMTjKDaiRXxXEC2'
+                    && resource.data.status == 'published'
+                    && resource.data.unlockAt <= request.time
+                    && request.resource.data.diff(resource.data).affectedKeys()
+                       .hasOnly(['openedAt', 'completedAt']);
+
+      // No one else can access anything
+      allow read, write: if false;
+    }
+  }
+}
