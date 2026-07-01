@@ -25,7 +25,7 @@ export function PartnerDayCard({ day }: PartnerCardProps) {
         ].join(' ')}
       >
         <span className="text-lg leading-none">
-          {isCompleted ? '✓' : isOpened ? (dayNumber === 2 ? '🧩' : '💌') : (dayNumber === 2 ? '🧩' : '🎁')}
+          {isCompleted ? '✓' : isOpened ? (dayNumber === 2 ? '🧩' : '💌') : '🎁'}
         </span>
         <span className="text-sm font-bold mt-1">{dayNumber}</span>
       </a>
