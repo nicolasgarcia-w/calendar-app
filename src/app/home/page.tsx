@@ -21,7 +21,8 @@ export default async function HomePage() {
         <div className="text-center">
           <p className="text-4xl mb-2">💝</p>
           <h1 className="text-2xl font-semibold text-rose-700">Tu Calendario</h1>
-          <p className="text-sm text-rose-300 mt-1">31 días, solo para ti</p>
+          <p className="text-sm text-rose-400 mt-1 font-medium">de Nico</p>
+          <p className="text-sm text-rose-300">a Camille</p>
         </div>
 
         <ProgressBar opened={opened} total={31} />
