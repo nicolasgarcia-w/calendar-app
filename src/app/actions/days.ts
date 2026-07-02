@@ -35,6 +35,6 @@ export async function unpublishDayAction(formData: FormData) {
 
 export async function markOpenedAction(dayNumber: number) {
   const session = await getSession()
-  if (!session) throw new Error('Unauthorized')
+  if (!session || session.role !== 'partner') return
   await markDayOpened(dayNumber)
 }

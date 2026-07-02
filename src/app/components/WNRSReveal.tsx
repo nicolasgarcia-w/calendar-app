@@ -124,7 +124,8 @@ export function WNRSReveal({ dayNumber, title, alreadyOpened }: Props) {
           className={['relative flex flex-col items-center gap-5 transition-all duration-350', opening ? 'scale-125 opacity-0' : 'hover:scale-105 active:scale-95'].join(' ')}
         >
           <div
-            className="w-48 h-64 rounded-2xl flex items-center justify-center shadow-2xl"
+            className="rounded-2xl flex items-center justify-center shadow-2xl"
+            style={{ width: 400, height: 270 }}
             style={{ backgroundColor: CRIMSON }}
           >
             <p className="text-white font-black text-center text-sm tracking-widest uppercase px-4 leading-relaxed">
@@ -157,17 +158,18 @@ export function WNRSReveal({ dayNumber, title, alreadyOpened }: Props) {
 
       {/* Card */}
       <div
-        className="w-full max-w-xs rounded-2xl shadow-2xl flex flex-col justify-between p-8 select-none"
+        className="rounded-2xl shadow-2xl flex flex-col justify-center items-center p-7 select-none relative"
         style={{
           backgroundColor: bg,
-          minHeight: 420,
+          width: 400,
+          height: 270,
           opacity: animDir ? 0 : 1,
           transform: animDir === 'right' ? 'translateX(-30px)' : animDir === 'left' ? 'translateX(30px)' : 'translateX(0)',
           transition: 'opacity 0.2s, transform 0.2s',
         }}
       >
         {/* Card content */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-4">
           {card.type === 'title' && (
             <>
               <p className="font-black text-center text-2xl tracking-widest uppercase leading-tight" style={{ color: textColor }}>
@@ -186,7 +188,7 @@ export function WNRSReveal({ dayNumber, title, alreadyOpened }: Props) {
           {card.type === 'level' && (
             <>
               <p className="font-black text-center text-xs tracking-widest uppercase" style={{ color: 'rgba(255,255,255,0.6)' }}>
-                NIVEL {card.level}
+                LEVEL {card.level}
               </p>
               <p className="font-black text-center text-4xl tracking-widest uppercase leading-tight" style={{ color: textColor }}>
                 {card.levelName}
@@ -195,21 +197,13 @@ export function WNRSReveal({ dayNumber, title, alreadyOpened }: Props) {
           )}
 
           {card.type === 'question' && (
-            <>
-              <p className="font-black text-center text-xs tracking-widest uppercase mb-2" style={{ color: `${CRIMSON}55` }}>
-                NIVEL {card.level}
-              </p>
-              <p className="font-bold text-center text-lg leading-snug uppercase" style={{ color: textColor }}>
-                {card.text}
-              </p>
-            </>
+            <p className="font-bold text-center text-lg leading-snug uppercase" style={{ color: textColor }}>
+              {card.text}
+            </p>
           )}
 
           {card.type === 'wildcard' && (
             <>
-              <p className="font-black text-center text-xs tracking-widest uppercase mb-1" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                NIVEL {card.level}
-              </p>
               <p className="font-black text-center text-xl tracking-widest uppercase mb-4" style={{ color: textColor }}>
                 WILDCARD
               </p>
@@ -221,7 +215,7 @@ export function WNRSReveal({ dayNumber, title, alreadyOpened }: Props) {
         </div>
 
         {/* Brand */}
-        <p className="text-center text-[9px] font-bold tracking-widest uppercase mt-6" style={{ color: brandColor }}>
+        <p className="absolute bottom-3 left-0 right-0 text-center text-[9px] font-bold tracking-widest uppercase" style={{ color: brandColor }}>
           WE'RE NOT REALLY STRANGERS
         </p>
       </div>
