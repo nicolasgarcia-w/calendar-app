@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { getDayForPartner } from '@/lib/days'
 import { MessageReveal } from '@/app/components/MessageReveal'
 import { CrosswordReveal } from '@/app/components/CrosswordReveal'
+import { WNRSReveal } from '@/app/components/WNRSReveal'
 
 type Props = { params: Promise<{ dayNumber: string }> }
 
@@ -24,6 +25,9 @@ export default async function DayPage({ params }: Props) {
     if (dayNumber === 2) {
       return <CrosswordReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} />
     }
+    if (dayNumber === 3) {
+      return <WNRSReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} />
+    }
     return (
       <MessageReveal
         dayNumber={dayNumber}
@@ -40,6 +44,9 @@ export default async function DayPage({ params }: Props) {
 
   if (dayNumber === 2) {
     return <CrosswordReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
+  }
+  if (dayNumber === 3) {
+    return <WNRSReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
   }
 
   return (

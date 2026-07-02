@@ -15,7 +15,7 @@ export function PartnerDayCard({ day, index = 0 }: PartnerCardProps) {
   const delay = `${index * 25}ms`
 
   if (isOpen) {
-    const icon = isCompleted ? '✓' : isOpened ? (dayNumber === 2 ? '🧩' : '💌') : '🎁'
+    const icon = isCompleted ? '✓' : isOpened ? (dayNumber === 2 ? '🧩' : dayNumber === 3 ? '🃏' : '💌') : '🎁'
     const isNew = !isOpened && !isCompleted
 
     return (
