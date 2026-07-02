@@ -122,13 +122,11 @@ export default async function AdminDayPage({ params, searchParams }: Props) {
           )}
         </div>
 
-        {day.status === 'published' && (
-          <p className="text-center text-xs text-slate-400 mt-4">
-            <a href={`/day/${dayNumber}`} className="underline hover:text-rose-500">
-              Vista previa como pareja →
-            </a>
-          </p>
-        )}
+        <p className="text-center text-xs text-slate-400 mt-4">
+          <a href={`/home?preview=${dayNumber}`} className="underline hover:text-rose-500">
+            Vista previa como pareja →
+          </a>
+        </p>
       </div>
     </div>
   )
