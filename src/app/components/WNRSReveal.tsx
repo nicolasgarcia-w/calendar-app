@@ -125,8 +125,7 @@ export function WNRSReveal({ dayNumber, title, alreadyOpened }: Props) {
         >
           <div
             className="rounded-2xl flex items-center justify-center shadow-2xl"
-            style={{ width: 400, height: 270 }}
-            style={{ backgroundColor: CRIMSON }}
+            style={{ width: 400, height: 270, backgroundColor: CRIMSON }}
           >
             <p className="text-white font-black text-center text-sm tracking-widest uppercase px-4 leading-relaxed">
               WE'RE NOT<br />REALLY<br />STRANGERS
