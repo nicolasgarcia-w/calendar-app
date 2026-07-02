@@ -16,7 +16,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-rose-50 px-4 py-8">
-      <div className="max-w-sm mx-auto flex flex-col gap-6">
+      <div className="max-w-md mx-auto flex flex-col gap-6">
 
         <div className="text-center">
           <p className="text-4xl mb-2">💝</p>
@@ -27,7 +27,7 @@ export default async function HomePage() {
 
         <ProgressBar opened={opened} total={31} />
 
-        <div className="bg-white rounded-2xl shadow-sm p-4">
+        <div className="bg-white rounded-2xl shadow-sm p-4 w-full">
           <PartnerCalendarGrid days={days} />
         </div>
 
