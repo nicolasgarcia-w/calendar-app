@@ -71,3 +71,41 @@ body {
 .animate-shimmer {
   animation: shimmer 2s ease-in-out infinite;
 }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.4); }
+}
+
+.animate-twinkle {
+  animation: twinkle var(--twinkle-duration, 3s) ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+}
+
+@keyframes star-glow {
+  0%, 100% { box-shadow: 0 0 4px 1px rgba(253,224,71,0.4); }
+  50%       { box-shadow: 0 0 12px 4px rgba(253,224,71,0.9); }
+}
+
+.animate-star-glow {
+  animation: star-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes telescope-expand {
+  from { clip-path: circle(0% at 50% 50%); }
+  to   { clip-path: circle(150% at 50% 50%); }
+}
+
+.animate-telescope-expand {
+  animation: telescope-expand 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes text-appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-text-appear {
+  animation: text-appear 0.8s ease-out forwards;
+  opacity: 0;
+}
