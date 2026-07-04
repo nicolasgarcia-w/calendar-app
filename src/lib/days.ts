@@ -1,7 +1,7 @@
 import 'server-only'
 import { FieldValue, Timestamp } from 'firebase-admin/firestore'
 import { adminDb } from './firebaseAdmin'
-import type { Day, PublicDay, AdminDay, AdminDayDetail, MessageContent } from './types'
+import type { Day, PublicDay, AdminDay, AdminDayDetail, AnyContent } from './types'
 
 export async function getAllDaysForAdmin(): Promise<AdminDay[]> {
   const snap = await adminDb.collection('days').orderBy('dayNumber').get()
@@ -70,7 +70,7 @@ export async function getDayForPartner(dayNumber: number): Promise<(AdminDayDeta
   }
 }
 
-export async function saveDayDraft(dayNumber: number, title: string, content: MessageContent) {
+export async function saveDayDraft(dayNumber: number, title: string, content: AnyContent) {
   await adminDb.collection('days').doc(String(dayNumber)).update({
     title,
     content,
@@ -78,7 +78,7 @@ export async function saveDayDraft(dayNumber: number, title: string, content: Me
   })
 }
 
-export async function publishDay(dayNumber: number, title: string, content: MessageContent) {
+export async function publishDay(dayNumber: number, title: string, content: AnyContent) {
   await adminDb.collection('days').doc(String(dayNumber)).update({
     title,
     content,

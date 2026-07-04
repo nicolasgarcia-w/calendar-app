@@ -7,6 +7,7 @@ import { MessageReveal } from '@/app/components/MessageReveal'
 import { CrosswordReveal } from '@/app/components/CrosswordReveal'
 import { WNRSReveal } from '@/app/components/WNRSReveal'
 import { ConstellationReveal } from '@/app/components/ConstellationReveal'
+import { LuckyJarReveal } from '@/app/components/LuckyJarReveal'
 
 type Props = { params: Promise<{ dayNumber: string }> }
 
@@ -29,6 +30,10 @@ export default async function DayPage({ params }: Props) {
     if (dayNumber === 3) {
       return <WNRSReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} />
     }
+    if (dayNumber === 4) {
+      const reasons = (day.content as { reasons?: string[] } | undefined)?.reasons ?? []
+      return <LuckyJarReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview reasons={reasons} />
+    }
     if (dayNumber === 11) {
       return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} />
     }
@@ -36,7 +41,7 @@ export default async function DayPage({ params }: Props) {
       <MessageReveal
         dayNumber={dayNumber}
         title={day.title}
-        body={day.content?.body ?? ''}
+        body={(day.content as { body?: string } | undefined)?.body ?? ''}
         alreadyOpened={true}
       />
     )
@@ -52,6 +57,10 @@ export default async function DayPage({ params }: Props) {
   if (dayNumber === 3) {
     return <WNRSReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
   }
+  if (dayNumber === 4) {
+    const reasons = (day.content as { reasons?: string[] } | undefined)?.reasons ?? []
+    return <LuckyJarReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} reasons={reasons} />
+  }
   if (dayNumber === 11) {
     return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
   }
@@ -60,7 +69,7 @@ export default async function DayPage({ params }: Props) {
     <MessageReveal
       dayNumber={dayNumber}
       title={day.title}
-      body={day.content?.body ?? ''}
+      body={(day.content as { body?: string } | undefined)?.body ?? ''}
       alreadyOpened={day.openedAt !== null}
     />
   )

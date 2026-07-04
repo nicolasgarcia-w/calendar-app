@@ -8,6 +8,12 @@ export type MessageContent = {
   body: string
 }
 
+export type JarContent = {
+  reasons: string[]
+}
+
+export type AnyContent = MessageContent | JarContent
+
 // Full record — only used server-side / admin
 export type Day = {
   dayNumber: number
@@ -17,7 +23,7 @@ export type Day = {
   unlockAt: Timestamp
   openedAt: Timestamp | null
   completedAt: Timestamp | null
-  content?: MessageContent  // grows as we add more content types
+  content?: AnyContent
 }
 
 // Full day data for admin edit page (serializable)
@@ -27,7 +33,7 @@ export type AdminDayDetail = {
   status: DayStatus
   contentType: ContentType
   unlockAt: number
-  content?: MessageContent
+  content?: AnyContent
 }
 
 // Stripped record sent to the partner's calendar grid

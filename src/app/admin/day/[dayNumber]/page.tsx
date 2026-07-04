@@ -78,20 +78,45 @@ export default async function AdminDayPage({ params, searchParams }: Props) {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="body">
-                Mensaje
-              </label>
-              <textarea
-                id="body"
-                name="body"
-                rows={10}
-                defaultValue={day.content?.body ?? ''}
-                placeholder="Escribe tu mensaje aquí…"
-                className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none leading-relaxed"
-              />
-              <p className="text-xs text-slate-400 mt-1">Los saltos de línea se conservan.</p>
-            </div>
+            {dayNumber === 4 ? (() => {
+              const saved = (day.content as { reasons?: string[] } | undefined)?.reasons ?? []
+              return (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Razones (20 papelitos · tarro 1: 1–10, tarro 2: 11–20)
+                  </label>
+                  <div className="flex flex-col gap-2">
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <span className="text-xs text-slate-400 w-5 pt-2.5 text-right shrink-0">{i + 1}</span>
+                        <textarea
+                          name={`reason_${i}`}
+                          rows={2}
+                          defaultValue={saved[i] ?? ''}
+                          placeholder={`Razón #${i + 1}…`}
+                          className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none leading-relaxed"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })() : (
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="body">
+                  Mensaje
+                </label>
+                <textarea
+                  id="body"
+                  name="body"
+                  rows={10}
+                  defaultValue={(day.content as { body?: string } | undefined)?.body ?? ''}
+                  placeholder="Escribe tu mensaje aquí…"
+                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none leading-relaxed"
+                />
+                <p className="text-xs text-slate-400 mt-1">Los saltos de línea se conservan.</p>
+              </div>
+            )}
 
             <div className="flex flex-col gap-2 pt-2">
               <button

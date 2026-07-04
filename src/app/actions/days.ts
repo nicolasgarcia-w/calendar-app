@@ -8,12 +8,22 @@ async function requireAdmin() {
   if (!session || session.role !== 'admin') throw new Error('Unauthorized')
 }
 
+function extractContent(dayNumber: number, formData: FormData) {
+  if (dayNumber === 4) {
+    const reasons: string[] = []
+    for (let i = 0; i < 20; i++) {
+      reasons.push(String(formData.get(`reason_${i}`) ?? '').trim())
+    }
+    return { reasons }
+  }
+  return { body: String(formData.get('body') ?? '') }
+}
+
 export async function saveDraftAction(formData: FormData) {
   await requireAdmin()
   const dayNumber = Number(formData.get('dayNumber'))
   const title = String(formData.get('title') ?? '')
-  const body = String(formData.get('body') ?? '')
-  await saveDayDraft(dayNumber, title, { body })
+  await saveDayDraft(dayNumber, title, extractContent(dayNumber, formData))
   redirect(`/admin/day/${dayNumber}?saved=1`)
 }
 
@@ -21,8 +31,7 @@ export async function publishDayAction(formData: FormData) {
   await requireAdmin()
   const dayNumber = Number(formData.get('dayNumber'))
   const title = String(formData.get('title') ?? '')
-  const body = String(formData.get('body') ?? '')
-  await publishDay(dayNumber, title, { body })
+  await publishDay(dayNumber, title, extractContent(dayNumber, formData))
   redirect(`/admin/day/${dayNumber}?published=1`)
 }
 
