@@ -12,7 +12,11 @@ export type JarContent = {
   reasons: string[]
 }
 
-export type AnyContent = MessageContent | JarContent
+export type PlaylistContent = {
+  notes: string[]
+}
+
+export type AnyContent = MessageContent | JarContent | PlaylistContent
 
 // Full record — only used server-side / admin
 export type Day = {

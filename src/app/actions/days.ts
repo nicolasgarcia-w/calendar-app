@@ -16,6 +16,13 @@ function extractContent(dayNumber: number, formData: FormData) {
     }
     return { reasons }
   }
+  if (dayNumber === 5) {
+    const notes: string[] = []
+    for (let i = 0; i < 5; i++) {
+      notes.push(String(formData.get(`note_${i}`) ?? '').trim())
+    }
+    return { notes }
+  }
   return { body: String(formData.get('body') ?? '') }
 }
 

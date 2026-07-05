@@ -101,6 +101,31 @@ export default async function AdminDayPage({ params, searchParams }: Props) {
                   </div>
                 </div>
               )
+            })() : dayNumber === 5 ? (() => {
+              const SONG_TITLES = ['Ojos Color Sol — Calle 13', 'Dime Que No — Ricardo Arjona', 'Who Knows — Daniel Caesar', 'Química Mayor — Mon Laferte', 'Tuki Tuki — Kris R']
+              const saved = (day.content as { notes?: string[] } | undefined)?.notes ?? []
+              return (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Nota por canción
+                  </label>
+                  <div className="flex flex-col gap-3">
+                    {SONG_TITLES.map((songTitle, i) => (
+                      <div key={i}>
+                        <p className="text-xs text-slate-500 mb-1">{i + 1}. {songTitle}</p>
+                        <textarea
+                          name={`note_${i}`}
+                          rows={2}
+                          defaultValue={saved[i] ?? ''}
+                          placeholder="Tu nota para esta canción…"
+                          className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none leading-relaxed"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-slate-400 mt-2">Fotos: <code>public/playlist/photo1.jpg</code> … <code>photo6.jpg</code> · Audio: <code>public/playlist/song1.mp3</code> … <code>song6.mp3</code></p>
+                </div>
+              )
             })() : (
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="body">
