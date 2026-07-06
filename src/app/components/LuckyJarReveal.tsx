@@ -21,14 +21,23 @@ const NOTE_LAYOUT = [
 
 // Background decorative jars shown when all 20 notes are read
 // i=5 (left=48%, top=6%) is excluded — lands directly behind the title text
-const BG_JARS = Array.from({ length: 16 }, (_, i) => ({
-  id: i,
-  left: (i * 61 + 7)  % 88,
-  top:  (i * 47 + 17) % 82,
-  size: 36 + (i % 4) * 14,
-  opacity: 0.30 + (i % 3) * 0.12,
-  delay: (i * 0.7) % 5,
-})).filter(j => j.id !== 5)
+const BG_JARS = [
+  ...Array.from({ length: 36 }, (_, i) => ({
+    id: i,
+    left: (i * 61 + 7)  % 88,
+    top:  (i * 47 + 17) % 82,
+    size: 36 + (i % 4) * 14,
+    opacity: 0.30 + (i % 3) * 0.12,
+    delay: (i * 0.7) % 5,
+  })).filter(j => j.id !== 5),
+  // Extra cluster in the bottom-right
+  { id: 100, left: 82, top: 72, size: 52, opacity: 0.42, delay: 0.3 },
+  { id: 101, left: 90, top: 82, size: 38, opacity: 0.34, delay: 1.1 },
+  { id: 102, left: 76, top: 86, size: 60, opacity: 0.36, delay: 0.7 },
+  { id: 103, left: 88, top: 62, size: 44, opacity: 0.30, delay: 1.8 },
+  { id: 104, left: 94, top: 74, size: 32, opacity: 0.38, delay: 0.5 },
+  { id: 105, left: 80, top: 92, size: 50, opacity: 0.32, delay: 2.1 },
+]
 
 // Note position as % of the jar container div
 // Jar body in SVG viewBox(0 0 260 400): x:[12,248] y:[100,378]
@@ -219,6 +228,21 @@ export function LuckyJarReveal({ dayNumber, title, alreadyOpened, reasons = [], 
         <p className="relative z-10 text-xs text-rose-300 mt-6 animate-pulse-subtle">
           toca un papelito 🩷
         </p>
+      )}
+
+      {allDone && (
+        <button
+          onClick={() => {
+            localStorage.removeItem(`jar-${dayNumber}`)
+            setOpenedNotes(new Set())
+            setJar2Phase('hidden')
+            jar2Triggered.current = false
+            setSelected(null)
+          }}
+          className="relative z-10 mt-6 px-5 py-2 rounded-full text-sm font-medium text-rose-600 border border-rose-300 hover:bg-rose-50 active:scale-95 transition-all"
+        >
+          Sellar los tarros 🫙
+        </button>
       )}
 
       <a href="/home" className="relative z-10 text-xs text-rose-300 underline mt-4 hover:text-rose-500">
