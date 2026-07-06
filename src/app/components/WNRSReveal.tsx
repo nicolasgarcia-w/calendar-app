@@ -239,9 +239,22 @@ export function WNRSReveal({ dayNumber, title, alreadyOpened }: Props) {
         </button>
       </div>
 
-      <a href="/home" className="text-xs mt-6 underline underline-offset-2 transition-colors" style={{ color: `${CRIMSON}66` }}>
-        ← Volver al calendario
-      </a>
+      <div className="flex items-center gap-4 mt-6">
+        <button
+          onClick={() => {
+            setIndex(0)
+            localStorage.setItem(`wnrs-day${dayNumber}`, '0')
+          }}
+          className="text-xs underline underline-offset-2 transition-colors"
+          style={{ color: `${CRIMSON}66` }}
+        >
+          Volver al inicio
+        </button>
+        <span style={{ color: `${CRIMSON}33` }}>·</span>
+        <a href="/home" className="text-xs underline underline-offset-2 transition-colors" style={{ color: `${CRIMSON}66` }}>
+          ← Volver al calendario
+        </a>
+      </div>
     </div>
   )
 }
