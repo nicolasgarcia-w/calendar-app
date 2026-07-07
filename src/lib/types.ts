@@ -16,7 +16,11 @@ export type PlaylistContent = {
   notes: string[]
 }
 
-export type AnyContent = MessageContent | JarContent | PlaylistContent
+export type BookshelfContent = {
+  memories: string[]
+}
+
+export type AnyContent = MessageContent | JarContent | PlaylistContent | BookshelfContent
 
 // Full record — only used server-side / admin
 export type Day = {

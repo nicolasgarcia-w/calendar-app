@@ -126,6 +126,30 @@ export default async function AdminDayPage({ params, searchParams }: Props) {
                   <p className="text-xs text-slate-400 mt-2">Fotos: <code>public/playlist/photo1.jpg</code> … <code>photo6.jpg</code> · Audio: <code>public/playlist/song1.mp3</code> … <code>song6.mp3</code></p>
                 </div>
               )
+            })() : dayNumber === 6 ? (() => {
+              const BOOK_LABELS = ['The Shining — Stephen King', 'Veinte poemas de amor y una canción desesperada — Neruda', 'Project Hail Mary — Andy Weir', 'Puerto Rico — Jorell Meléndez Badillo', 'The Old Man and the Sea — Hemingway']
+              const saved = (day.content as { memories?: string[] } | undefined)?.memories ?? []
+              return (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Recuerdo por libro
+                  </label>
+                  <div className="flex flex-col gap-3">
+                    {BOOK_LABELS.map((label, i) => (
+                      <div key={i}>
+                        <p className="text-xs text-slate-500 mb-1">{i + 1}. {label}</p>
+                        <textarea
+                          name={`memory_${i}`}
+                          rows={3}
+                          defaultValue={saved[i] ?? ''}
+                          placeholder="Tu recuerdo o nota para este libro…"
+                          className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none leading-relaxed"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
             })() : (
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="body">

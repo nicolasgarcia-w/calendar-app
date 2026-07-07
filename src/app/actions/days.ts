@@ -23,6 +23,13 @@ function extractContent(dayNumber: number, formData: FormData) {
     }
     return { notes }
   }
+  if (dayNumber === 6) {
+    const memories: string[] = []
+    for (let i = 0; i < 5; i++) {
+      memories.push(String(formData.get(`memory_${i}`) ?? '').trim())
+    }
+    return { memories }
+  }
   return { body: String(formData.get('body') ?? '') }
 }
 

@@ -9,6 +9,7 @@ import { WNRSReveal } from '@/app/components/WNRSReveal'
 import { ConstellationReveal } from '@/app/components/ConstellationReveal'
 import { LuckyJarReveal } from '@/app/components/LuckyJarReveal'
 import { PlaylistReveal } from '@/app/components/PlaylistReveal'
+import { BookshelfReveal } from '@/app/components/BookshelfReveal'
 
 type Props = { params: Promise<{ dayNumber: string }> }
 
@@ -38,6 +39,10 @@ export default async function DayPage({ params }: Props) {
     if (dayNumber === 5) {
       const notes = (day.content as { notes?: string[] } | undefined)?.notes ?? []
       return <PlaylistReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview notes={notes} />
+    }
+    if (dayNumber === 6) {
+      const memories = (day.content as { memories?: string[] } | undefined)?.memories ?? []
+      return <BookshelfReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview memories={memories} />
     }
     if (dayNumber === 11) {
       return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} />
@@ -69,6 +74,10 @@ export default async function DayPage({ params }: Props) {
   if (dayNumber === 5) {
     const notes = (day.content as { notes?: string[] } | undefined)?.notes ?? []
     return <PlaylistReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} notes={notes} />
+  }
+  if (dayNumber === 6) {
+    const memories = (day.content as { memories?: string[] } | undefined)?.memories ?? []
+    return <BookshelfReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} memories={memories} />
   }
   if (dayNumber === 11) {
     return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
