@@ -150,7 +150,22 @@ export default async function AdminDayPage({ params, searchParams }: Props) {
                   </div>
                 </div>
               )
-            })() : (
+            })() : dayNumber === 7 ? (
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="message">
+                  Mensaje (aparece cuando completa el rompecabezas)
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={6}
+                  defaultValue={(day.content as { message?: string } | undefined)?.message ?? ''}
+                  placeholder="Escribe el mensaje que verá al terminar el rompecabezas…"
+                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none leading-relaxed"
+                />
+                <p className="text-xs text-slate-400 mt-1">Imágenes: <code>public/puzzle/photo1.jpeg</code>, <code>photo2.jpeg</code>, <code>photo3.jpeg</code></p>
+              </div>
+            ) : (
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="body">
                   Mensaje

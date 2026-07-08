@@ -20,7 +20,11 @@ export type BookshelfContent = {
   memories: string[]
 }
 
-export type AnyContent = MessageContent | JarContent | PlaylistContent | BookshelfContent
+export type PuzzleContent = {
+  message: string
+}
+
+export type AnyContent = MessageContent | JarContent | PlaylistContent | BookshelfContent | PuzzleContent
 
 // Full record — only used server-side / admin
 export type Day = {

@@ -30,6 +30,9 @@ function extractContent(dayNumber: number, formData: FormData) {
     }
     return { memories }
   }
+  if (dayNumber === 7) {
+    return { message: String(formData.get('message') ?? '').trim() }
+  }
   return { body: String(formData.get('body') ?? '') }
 }
 
