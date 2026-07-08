@@ -255,8 +255,8 @@ export function PuzzleReveal({ dayNumber, title, alreadyOpened, message = '', is
             const row = Math.floor(pieceId / COLS)
             const isLocked   = locked.has(slotIdx)
             const isSelected = selected === slotIdx
-            const xPct = COLS === 1 ? 0 : (col / (COLS - 1)) * 100
-            const yPct = ROWS === 1 ? 0 : (row / (ROWS - 1)) * 100
+            const xPct = col === 0 ? 0 : (col / (COLS - 1)) * 100
+            const yPct = row === 0 ? 0 : (row / (ROWS - 1)) * 100
 
             return (
               <button
