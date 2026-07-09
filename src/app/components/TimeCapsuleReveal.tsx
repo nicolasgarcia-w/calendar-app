@@ -92,7 +92,7 @@ export function TimeCapsuleReveal({ dayNumber, title, alreadyOpened, isPreview =
     const fd = new FormData(e.currentTarget)
     const result = await sealCapsuleAction(fd)
     if ('error' in result) {
-      setError(result.error)
+      setError(result.error ?? 'Error desconocido.')
       setSubmitting(false)
       return
     }
