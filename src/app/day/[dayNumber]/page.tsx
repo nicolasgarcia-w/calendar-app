@@ -11,6 +11,7 @@ import { LuckyJarReveal } from '@/app/components/LuckyJarReveal'
 import { PlaylistReveal } from '@/app/components/PlaylistReveal'
 import { BookshelfReveal } from '@/app/components/BookshelfReveal'
 import { PuzzleReveal } from '@/app/components/PuzzleReveal'
+import { TimeCapsuleReveal } from '@/app/components/TimeCapsuleReveal'
 
 type Props = { params: Promise<{ dayNumber: string }> }
 
@@ -48,6 +49,9 @@ export default async function DayPage({ params }: Props) {
     if (dayNumber === 7) {
       const message = (day.content as { message?: string } | undefined)?.message ?? ''
       return <PuzzleReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview message={message} />
+    }
+    if (dayNumber === 8) {
+      return <TimeCapsuleReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview />
     }
     if (dayNumber === 11) {
       return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} />
@@ -87,6 +91,9 @@ export default async function DayPage({ params }: Props) {
   if (dayNumber === 7) {
     const message = (day.content as { message?: string } | undefined)?.message ?? ''
     return <PuzzleReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} message={message} />
+  }
+  if (dayNumber === 8) {
+    return <TimeCapsuleReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
   }
   if (dayNumber === 11) {
     return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
