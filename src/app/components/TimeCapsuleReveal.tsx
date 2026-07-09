@@ -98,6 +98,7 @@ export function TimeCapsuleReveal({ dayNumber, title, alreadyOpened, isPreview =
     }
     const d = new Date(result.sendAt)
     setSendDate(d.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }))
+    setSubmitting(false)
     setStage('launching')
     setTimeout(() => { setStage('done'); setSealCount(c => c + 1) }, 2000)
   }
