@@ -24,7 +24,11 @@ export type PuzzleContent = {
   message: string
 }
 
-export type AnyContent = MessageContent | JarContent | PlaylistContent | BookshelfContent | PuzzleContent
+export type MapContent = {
+  notes: string[]
+}
+
+export type AnyContent = MessageContent | JarContent | PlaylistContent | BookshelfContent | PuzzleContent | MapContent
 
 // Full record — only used server-side / admin
 export type Day = {

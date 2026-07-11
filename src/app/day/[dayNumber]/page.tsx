@@ -12,6 +12,9 @@ import { PlaylistReveal } from '@/app/components/PlaylistReveal'
 import { BookshelfReveal } from '@/app/components/BookshelfReveal'
 import { PuzzleReveal } from '@/app/components/PuzzleReveal'
 import { TimeCapsuleReveal } from '@/app/components/TimeCapsuleReveal'
+import { WordleReveal } from '@/app/components/WordleReveal'
+import { PasswordGateReveal } from '@/app/components/PasswordGateReveal'
+import { BostonCommonReveal } from '@/app/components/BostonCommonReveal'
 
 type Props = { params: Promise<{ dayNumber: string }> }
 
@@ -52,6 +55,13 @@ export default async function DayPage({ params }: Props) {
     }
     if (dayNumber === 8) {
       return <TimeCapsuleReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview />
+    }
+    if (dayNumber === 9) {
+      return <WordleReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview />
+    }
+    if (dayNumber === 10) {
+      const notes = (day.content as { notes?: string[] } | undefined)?.notes ?? []
+      return <BostonCommonReveal dayNumber={dayNumber} title={day.title} notes={notes} alreadyOpened={true} isPreview />
     }
     if (dayNumber === 11) {
       return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} />
@@ -94,6 +104,13 @@ export default async function DayPage({ params }: Props) {
   }
   if (dayNumber === 8) {
     return <TimeCapsuleReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
+  }
+  if (dayNumber === 9) {
+    return <WordleReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
+  }
+  if (dayNumber === 10) {
+    const notes = (day.content as { notes?: string[] } | undefined)?.notes ?? []
+    return <BostonCommonReveal dayNumber={dayNumber} title={day.title} notes={notes} alreadyOpened={day.openedAt !== null} />
   }
   if (dayNumber === 11) {
     return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />

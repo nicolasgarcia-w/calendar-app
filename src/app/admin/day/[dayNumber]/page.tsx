@@ -150,7 +150,35 @@ export default async function AdminDayPage({ params, searchParams }: Props) {
                   </div>
                 </div>
               )
-            })() : dayNumber === 7 ? (
+            })() : dayNumber === 10 ? (() => {
+              const PIN_LABELS = ['Nuestro banco — En el parque', 'El muelle — Public Garden', 'Flour Bakery — Cerca']
+              const savedNotes = (day.content as { notes?: string[] } | undefined)?.notes ?? []
+              return (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Nota por pin del mapa</label>
+                  <div className="flex flex-col gap-3">
+                    {PIN_LABELS.map((label, i) => (
+                      <div key={i}>
+                        <p className="text-xs text-slate-500 mb-1">{i + 1}. {label}</p>
+                        <textarea
+                          name={`note_${i}`}
+                          rows={3}
+                          defaultValue={savedNotes[i] ?? ''}
+                          placeholder="Tu nota para este lugar…"
+                          className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none leading-relaxed"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })() : dayNumber === 9 ? (
+              <div className="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-600">
+                <p className="font-medium text-slate-700 mb-1">Wordle — dos puzzles</p>
+                <p>Palabra 1: <code className="bg-slate-100 px-1 rounded">BOSTON</code> · Palabra 2: <code className="bg-slate-100 px-1 rounded">COMMON</code></p>
+                <p className="mt-1 text-slate-500">Al resolver ambas se revela la contraseña para el Día 10: <strong>BOSTON COMMON</strong></p>
+              </div>
+            ) : dayNumber === 7 ? (
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="message">
                   Mensaje (aparece cuando completa el rompecabezas)
