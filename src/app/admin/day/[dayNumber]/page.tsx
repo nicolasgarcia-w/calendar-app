@@ -172,6 +172,59 @@ export default async function AdminDayPage({ params, searchParams }: Props) {
                   </div>
                 </div>
               )
+            })() : dayNumber === 11 ? (() => {
+              const DAY_LABELS = Array.from({ length: 13 }, (_, i) => `Día ${i + 1}${i === 12 ? ' (video)' : ''}`)
+              const savedNotes = (day.content as { notes?: string[] } | undefined)?.notes ?? []
+              return (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Nota por día en California</label>
+                  <p className="text-xs text-slate-400 mb-3">Fotos: <code>public/constellation/day1.jpeg</code> … <code>day13.jpeg</code> · Video: <code>public/constellation/day13.mp4</code></p>
+                  <div className="flex flex-col gap-3">
+                    {DAY_LABELS.map((label, i) => (
+                      <div key={i}>
+                        <p className="text-xs text-slate-500 mb-1">{label}</p>
+                        <textarea
+                          name={`note_${i}`}
+                          rows={2}
+                          defaultValue={savedNotes[i] ?? ''}
+                          placeholder={`Tu nota para el ${label.toLowerCase()}…`}
+                          className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none leading-relaxed"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })() : dayNumber === 12 ? (() => {
+              const savedCoupons = (day.content as { coupons?: { title: string; description: string }[] } | undefined)?.coupons ?? []
+              return (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-3">Cupones (5)</label>
+                  <div className="flex flex-col gap-5">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <div key={i} className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Cupón {i + 1}</p>
+                        <div className="flex flex-col gap-2">
+                          <input
+                            name={`coupon_title_${i}`}
+                            type="text"
+                            defaultValue={savedCoupons[i]?.title ?? ''}
+                            placeholder="Título del cupón…"
+                            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-white"
+                          />
+                          <textarea
+                            name={`coupon_desc_${i}`}
+                            rows={2}
+                            defaultValue={savedCoupons[i]?.description ?? ''}
+                            placeholder="Descripción del cupón…"
+                            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none leading-relaxed bg-white"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
             })() : dayNumber === 9 ? (
               <div className="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-600">
                 <p className="font-medium text-slate-700 mb-1">Wordle — dos puzzles</p>

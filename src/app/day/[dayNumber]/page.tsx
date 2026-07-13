@@ -15,6 +15,7 @@ import { TimeCapsuleReveal } from '@/app/components/TimeCapsuleReveal'
 import { WordleReveal } from '@/app/components/WordleReveal'
 import { PasswordGateReveal } from '@/app/components/PasswordGateReveal'
 import { BostonCommonReveal } from '@/app/components/BostonCommonReveal'
+import { CouponReveal } from '@/app/components/CouponReveal'
 
 type Props = { params: Promise<{ dayNumber: string }> }
 
@@ -64,7 +65,12 @@ export default async function DayPage({ params }: Props) {
       return <BostonCommonReveal dayNumber={dayNumber} title={day.title} notes={notes} alreadyOpened={true} isPreview />
     }
     if (dayNumber === 11) {
-      return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} />
+      const notes = (day.content as { notes?: string[] } | undefined)?.notes ?? []
+      return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} notes={notes} />
+    }
+    if (dayNumber === 12) {
+      const coupons = (day.content as { coupons?: { title: string; description: string }[] } | undefined)?.coupons ?? []
+      return <CouponReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} coupons={coupons} />
     }
     return (
       <MessageReveal
@@ -113,7 +119,12 @@ export default async function DayPage({ params }: Props) {
     return <BostonCommonReveal dayNumber={dayNumber} title={day.title} notes={notes} alreadyOpened={day.openedAt !== null} />
   }
   if (dayNumber === 11) {
-    return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
+    const notes = (day.content as { notes?: string[] } | undefined)?.notes ?? []
+    return <ConstellationReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} notes={notes} />
+  }
+  if (dayNumber === 12) {
+    const coupons = (day.content as { coupons?: { title: string; description: string }[] } | undefined)?.coupons ?? []
+    return <CouponReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} coupons={coupons} />
   }
 
   return (

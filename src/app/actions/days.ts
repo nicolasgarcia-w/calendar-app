@@ -40,6 +40,23 @@ function extractContent(dayNumber: number, formData: FormData) {
     }
     return { notes }
   }
+  if (dayNumber === 11) {
+    const notes: string[] = []
+    for (let i = 0; i < 13; i++) {
+      notes.push(String(formData.get(`note_${i}`) ?? '').trim())
+    }
+    return { notes }
+  }
+  if (dayNumber === 12) {
+    const coupons = []
+    for (let i = 0; i < 5; i++) {
+      coupons.push({
+        title:       String(formData.get(`coupon_title_${i}`) ?? '').trim(),
+        description: String(formData.get(`coupon_desc_${i}`)  ?? '').trim(),
+      })
+    }
+    return { coupons }
+  }
   return { body: String(formData.get('body') ?? '') }
 }
 

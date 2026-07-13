@@ -28,7 +28,15 @@ export type MapContent = {
   notes: string[]
 }
 
-export type AnyContent = MessageContent | JarContent | PlaylistContent | BookshelfContent | PuzzleContent | MapContent
+export type ConstellationContent = {
+  notes: string[]
+}
+
+export type CouponContent = {
+  coupons: { title: string; description: string }[]
+}
+
+export type AnyContent = MessageContent | JarContent | PlaylistContent | BookshelfContent | PuzzleContent | MapContent | ConstellationContent | CouponContent
 
 // Full record — only used server-side / admin
 export type Day = {
