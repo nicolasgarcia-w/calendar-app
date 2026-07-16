@@ -119,7 +119,7 @@ type Stage = 'gate' | 'map'
 type Props = { dayNumber: number; title: string; notes: string[]; alreadyOpened: boolean; isPreview?: boolean }
 
 export function BostonCommonReveal({ dayNumber, title, notes, alreadyOpened, isPreview = false }: Props) {
-  const [stage,     setStage]     = useState<Stage>(alreadyOpened && !isPreview ? 'map' : 'gate')
+  const [stage,     setStage]     = useState<Stage>('gate')
   const [input,     setInput]     = useState('')
   const [error,     setError]     = useState(false)
   const [opening,   setOpening]   = useState(false)
@@ -193,8 +193,8 @@ export function BostonCommonReveal({ dayNumber, title, notes, alreadyOpened, isP
       </div>
 
       {/* Map container */}
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '14px 12px 28px' }}>
-        <div style={{ width: '100%', maxWidth: 460, borderRadius: 18, overflow: 'hidden', boxShadow: '0 8px 48px rgba(80,60,20,0.22)', border: '1px solid #bfad88' }}>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '8px 4px 16px' }}>
+        <div style={{ width: '100%', maxWidth: 620, borderRadius: 18, overflow: 'hidden', boxShadow: '0 8px 48px rgba(80,60,20,0.22)', border: '1px solid #bfad88' }}>
 
           {/* viewBox: -150 0 550 500 — Public Garden on left, Boston Common on right */}
           <svg viewBox="-150 0 550 500" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', display: 'block' }}>
@@ -317,33 +317,7 @@ export function BostonCommonReveal({ dayNumber, title, notes, alreadyOpened, isP
               {/* Deck highlight (top lit edge) */}
               <line x1="-104" y1="225.5" x2="-14" y2="225.5" stroke="rgba(255,240,200,0.5)" strokeWidth="1"/>
 
-              {/* Swan boat — iconic Public Garden feature */}
-              <g>
-                {/* Body */}
-                <ellipse cx="-66" cy="264" rx="22" ry="9" fill="rgba(255,255,255,0.92)" stroke="rgba(200,225,245,0.55)" strokeWidth="0.8"/>
-                {/* Neck */}
-                <path d="M -48 258 Q -40 244 -42 236" stroke="rgba(255,255,255,0.92)" strokeWidth="3" fill="none" strokeLinecap="round"/>
-                {/* Head */}
-                <circle cx="-43" cy="234" r="5.5" fill="rgba(255,255,255,0.94)"/>
-                {/* Beak */}
-                <path d="M -38 234 L -33 236" stroke="#e8a840" strokeWidth="2" strokeLinecap="round"/>
-                {/* Eye */}
-                <circle cx="-45" cy="232" r="1.2" fill="#3a3028"/>
-                {/* Water ripple */}
-                <ellipse cx="-66" cy="267" rx="26" ry="4.5" fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="1"/>
-              </g>
 
-              {/* Ducks in lagoon */}
-              <g transform="translate(-35, 248)" opacity="0.72">
-                <ellipse cx="0" cy="0" rx="7" ry="4" fill="white"/>
-                <circle cx="5" cy="-2" r="3.5" fill="white"/>
-                <path d="M 7 -2 L 10 -1" stroke="#e0a040" strokeWidth="1.5" strokeLinecap="round"/>
-              </g>
-              <g transform="translate(-88, 240)" opacity="0.62">
-                <ellipse cx="0" cy="0" rx="5.5" ry="3.5" fill="white"/>
-                <circle cx="4" cy="-1.5" r="3" fill="white"/>
-                <path d="M 6 -1.5 L 8.5 -0.5" stroke="#e0a040" strokeWidth="1.2" strokeLinecap="round"/>
-              </g>
 
               {/* ── DOCK / MUELLE ───────────────────────────────────────── */}
               {/* Two piles going into the water */}
