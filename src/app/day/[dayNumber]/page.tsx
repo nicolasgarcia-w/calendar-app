@@ -16,6 +16,8 @@ import { WordleReveal } from '@/app/components/WordleReveal'
 import { PasswordGateReveal } from '@/app/components/PasswordGateReveal'
 import { BostonCommonReveal } from '@/app/components/BostonCommonReveal'
 import { CouponReveal } from '@/app/components/CouponReveal'
+import { PuertoRicoReveal } from '@/app/components/PuertoRicoReveal'
+import { CookbookReveal } from '@/app/components/CookbookReveal'
 
 type Props = { params: Promise<{ dayNumber: string }> }
 
@@ -72,6 +74,12 @@ export default async function DayPage({ params }: Props) {
       const coupons = (day.content as { coupons?: { title: string; description: string }[] } | undefined)?.coupons ?? []
       return <CouponReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} coupons={coupons} />
     }
+    if (dayNumber === 13) {
+      return <CookbookReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview />
+    }
+    if (dayNumber === 16) {
+      return <PuertoRicoReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview />
+    }
     return (
       <MessageReveal
         dayNumber={dayNumber}
@@ -125,6 +133,12 @@ export default async function DayPage({ params }: Props) {
   if (dayNumber === 12) {
     const coupons = (day.content as { coupons?: { title: string; description: string }[] } | undefined)?.coupons ?? []
     return <CouponReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} coupons={coupons} />
+  }
+  if (dayNumber === 13) {
+    return <CookbookReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
+  }
+  if (dayNumber === 16) {
+    return <PuertoRicoReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
   }
 
   return (

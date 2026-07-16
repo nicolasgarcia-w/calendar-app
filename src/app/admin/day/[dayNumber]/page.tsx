@@ -225,7 +225,17 @@ export default async function AdminDayPage({ params, searchParams }: Props) {
                   </div>
                 </div>
               )
-            })() : dayNumber === 9 ? (
+            })() : dayNumber === 13 ? (
+              <div className="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-600">
+                <p className="font-medium text-slate-700 mb-1">📖 Libro de Recetas</p>
+                <p>5 recetas incluidas: Aglio e Olio · Arroz con Gandules · Salmón · Grilled Cheese · Milanesa. No requiere contenido adicional.</p>
+              </div>
+            ) : dayNumber === 16 ? (
+              <div className="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-600">
+                <p className="font-medium text-slate-700 mb-1">🇵🇷 Mapa de Puerto Rico</p>
+                <p>El mapa se genera automáticamente. Próximamente: pines con lugares visitados.</p>
+              </div>
+            ) : dayNumber === 9 ? (
               <div className="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-600">
                 <p className="font-medium text-slate-700 mb-1">Wordle — dos puzzles</p>
                 <p>Palabra 1: <code className="bg-slate-100 px-1 rounded">BOSTON</code> · Palabra 2: <code className="bg-slate-100 px-1 rounded">COMMON</code></p>
