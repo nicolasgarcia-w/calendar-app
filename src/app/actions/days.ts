@@ -2,13 +2,14 @@
 import { redirect } from 'next/navigation'
 import { getSession } from '@/lib/session'
 import { saveDayDraft, publishDay, unpublishDay, markDayOpened } from '@/lib/days'
+import type { AnyContent } from '@/lib/types'
 
 async function requireAdmin() {
   const session = await getSession()
   if (!session || session.role !== 'admin') throw new Error('Unauthorized')
 }
 
-function extractContent(dayNumber: number, formData: FormData) {
+function extractContent(dayNumber: number, formData: FormData): AnyContent {
   if (dayNumber === 4) {
     const reasons: string[] = []
     for (let i = 0; i < 20; i++) {
