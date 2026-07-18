@@ -227,10 +227,48 @@ export default async function AdminDayPage({ params, searchParams }: Props) {
               )
             })() : dayNumber === 13 ? (
               <div className="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-600">
-                <p className="font-medium text-slate-700 mb-1">📖 Libro de Recetas</p>
-                <p>5 recetas incluidas: Aglio e Olio · Arroz con Gandules · Salmón · Grilled Cheese · Milanesa. No requiere contenido adicional.</p>
+                <p className="font-medium text-slate-700 mb-1">🍳 Libro de Recetas</p>
+                <p>5 recetas incluidas. No requiere contenido adicional.</p>
               </div>
-            ) : dayNumber === 16 ? (
+            ) : dayNumber === 14 ? (() => {
+              const savedQs = (day.content as { questions?: { text: string; nicoAnswer: string; nicoGuess: string }[] } | undefined)?.questions ?? []
+              return (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Preguntas del juego (hasta 10)</label>
+                  <p className="text-xs text-slate-400 mb-4">Por cada pregunta: tu respuesta real y lo que crees que ella responderá. Ella hará lo mismo al jugar.</p>
+                  <div className="flex flex-col gap-5">
+                    {Array.from({ length: 8 }, (_, i) => (
+                      <div key={i} className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Pregunta {i + 1}</p>
+                        <div className="flex flex-col gap-2">
+                          <input
+                            name={`q_text_${i}`}
+                            type="text"
+                            defaultValue={savedQs[i]?.text ?? ''}
+                            placeholder="ej. ¿Cuál es tu color favorito?"
+                            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-white"
+                          />
+                          <input
+                            name={`q_nico_answer_${i}`}
+                            type="text"
+                            defaultValue={savedQs[i]?.nicoAnswer ?? ''}
+                            placeholder="Tu respuesta real..."
+                            className="w-full rounded-lg border border-blue-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-300 bg-white"
+                          />
+                          <input
+                            name={`q_nico_guess_${i}`}
+                            type="text"
+                            defaultValue={savedQs[i]?.nicoGuess ?? ''}
+                            placeholder="Lo que crees que ella responderá..."
+                            className="w-full rounded-lg border border-rose-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-white"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })() : dayNumber === 16 ? (
               <div className="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-600">
                 <p className="font-medium text-slate-700 mb-1">🇵🇷 Mapa de Puerto Rico</p>
                 <p>El mapa se genera automáticamente. Próximamente: pines con lugares visitados.</p>

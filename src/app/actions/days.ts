@@ -57,6 +57,16 @@ function extractContent(dayNumber: number, formData: FormData) {
     }
     return { coupons }
   }
+  if (dayNumber === 14) {
+    const questions = []
+    for (let i = 0; i < 8; i++) {
+      const text       = String(formData.get(`q_text_${i}`)       ?? '').trim()
+      const nicoAnswer = String(formData.get(`q_nico_answer_${i}`) ?? '').trim()
+      const nicoGuess  = String(formData.get(`q_nico_guess_${i}`)  ?? '').trim()
+      if (text) questions.push({ text, nicoAnswer, nicoGuess })
+    }
+    return { questions }
+  }
   return { body: String(formData.get('body') ?? '') }
 }
 
