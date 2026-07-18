@@ -15,38 +15,38 @@ function extractContent(dayNumber: number, formData: FormData): AnyContent {
     for (let i = 0; i < 20; i++) {
       reasons.push(String(formData.get(`reason_${i}`) ?? '').trim())
     }
-    return { reasons }
+    return { reasons } as AnyContent
   }
   if (dayNumber === 5) {
     const notes: string[] = []
     for (let i = 0; i < 5; i++) {
       notes.push(String(formData.get(`note_${i}`) ?? '').trim())
     }
-    return { notes }
+    return { notes } as AnyContent
   }
   if (dayNumber === 6) {
     const memories: string[] = []
     for (let i = 0; i < 5; i++) {
       memories.push(String(formData.get(`memory_${i}`) ?? '').trim())
     }
-    return { memories }
+    return { memories } as AnyContent
   }
   if (dayNumber === 7) {
-    return { message: String(formData.get('message') ?? '').trim() }
+    return { message: String(formData.get('message') ?? '').trim() } as AnyContent
   }
   if (dayNumber === 10) {
     const notes: string[] = []
     for (let i = 0; i < 3; i++) {
       notes.push(String(formData.get(`note_${i}`) ?? '').trim())
     }
-    return { notes }
+    return { notes } as AnyContent
   }
   if (dayNumber === 11) {
     const notes: string[] = []
     for (let i = 0; i < 13; i++) {
       notes.push(String(formData.get(`note_${i}`) ?? '').trim())
     }
-    return { notes }
+    return { notes } as AnyContent
   }
   if (dayNumber === 12) {
     const coupons = []
@@ -56,7 +56,7 @@ function extractContent(dayNumber: number, formData: FormData): AnyContent {
         description: String(formData.get(`coupon_desc_${i}`)  ?? '').trim(),
       })
     }
-    return { coupons }
+    return { coupons } as AnyContent
   }
   if (dayNumber === 14) {
     const questions = []
@@ -66,9 +66,9 @@ function extractContent(dayNumber: number, formData: FormData): AnyContent {
       const nicoGuess  = String(formData.get(`q_nico_guess_${i}`)  ?? '').trim()
       if (text) questions.push({ text, nicoAnswer, nicoGuess })
     }
-    return { questions }
+    return { questions } as AnyContent
   }
-  return { body: String(formData.get('body') ?? '') }
+  return { body: String(formData.get('body') ?? '') } as AnyContent
 }
 
 export async function saveDraftAction(formData: FormData) {
