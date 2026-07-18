@@ -66,7 +66,7 @@ function extractContent(dayNumber: number, formData: FormData): AnyContent {
       const nicoGuess  = String(formData.get(`q_nico_guess_${i}`)  ?? '').trim()
       if (text) questions.push({ text, nicoAnswer, nicoGuess })
     }
-    return { questions } as AnyContent
+    return { questions } as unknown as AnyContent
   }
   return { body: String(formData.get('body') ?? '') } as AnyContent
 }
