@@ -36,7 +36,11 @@ export type CouponContent = {
   coupons: { title: string; description: string }[]
 }
 
-export type AnyContent = MessageContent | JarContent | PlaylistContent | BookshelfContent | PuzzleContent | MapContent | ConstellationContent | CouponContent
+export type CoupleQuizContent = {
+  questions: { text: string; nicoAnswer: string; nicoGuess: string }[]
+}
+
+export type AnyContent = MessageContent | JarContent | PlaylistContent | BookshelfContent | PuzzleContent | MapContent | ConstellationContent | CouponContent | CoupleQuizContent
 
 // Full record — only used server-side / admin
 export type Day = {

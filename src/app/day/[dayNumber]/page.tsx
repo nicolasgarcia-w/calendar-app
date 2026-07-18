@@ -18,6 +18,7 @@ import { BostonCommonReveal } from '@/app/components/BostonCommonReveal'
 import { CouponReveal } from '@/app/components/CouponReveal'
 import { PuertoRicoReveal } from '@/app/components/PuertoRicoReveal'
 import { CookbookReveal } from '@/app/components/CookbookReveal'
+import { CouplesQuizReveal } from '@/app/components/CouplesQuizReveal'
 
 type Props = { params: Promise<{ dayNumber: string }> }
 
@@ -76,6 +77,10 @@ export default async function DayPage({ params }: Props) {
     }
     if (dayNumber === 13) {
       return <CookbookReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview />
+    }
+    if (dayNumber === 14) {
+      const questions = (day.content as { questions?: { text: string; nicoAnswer: string; nicoGuess: string }[] } | undefined)?.questions ?? []
+      return <CouplesQuizReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} questions={questions} isPreview />
     }
     if (dayNumber === 16) {
       return <PuertoRicoReveal dayNumber={dayNumber} title={day.title} alreadyOpened={true} isPreview />
@@ -136,6 +141,10 @@ export default async function DayPage({ params }: Props) {
   }
   if (dayNumber === 13) {
     return <CookbookReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
+  }
+  if (dayNumber === 14) {
+    const questions = (day.content as { questions?: { text: string; nicoAnswer: string; nicoGuess: string }[] } | undefined)?.questions ?? []
+    return <CouplesQuizReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} questions={questions} />
   }
   if (dayNumber === 16) {
     return <PuertoRicoReveal dayNumber={dayNumber} title={day.title} alreadyOpened={day.openedAt !== null} />
